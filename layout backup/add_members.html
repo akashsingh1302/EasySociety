@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin - Dashboard</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel = "stylesheet" href = "formstyle.css">
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="admindashboard.php">EasySociety</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav navbar-nav ml-auto" >
+          <li class="nav-item ">
+              <a href="#">
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#logoutModal">Logout</button>
+                </a>
+            </li>
+     </ul>
+    </nav>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="admindashboard.php">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="add_members.html" >
+          <i class="fas fa-pen-fancy"></i>
+            <span>Add Members</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="add_announcements.html" >
+          <i class="fas fa-pen-fancy"></i>
+            <span>Add Announcement</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="update_bill.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Update Bill Format</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="visitors-admin.php">
+           <i class="fas fa-eye"></i>
+            <span>View Visitors</span></a>
+        </li>
+      </ul>
+      
+      <div id="content-wrapper">
+
+        <div class="card-header" style="text-align: center;"><i class="fas fa-user-plus"></i>New Member Details</div>
+
+        <div style='border-radius: 5px; background-color: #fff;padding:20px;'>
+
+          <form action="../add_members.php" name ="newmember" method="POST" >
+            <div class = "form-group">
+                <label for="wing">Flat Address:</label>
+                  <select name="wing" id="wing" class ="input-control" style="flex:3" required>
+                    <option value="a" selected disabled>Select Wing</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>   
+                  <select id="floor" name = "floor" onchange="countryChange(this);" class = "input-control"  style = "flex:3" required>
+                    <option value="empty" selected disabled>Select Floor</option>
+                    <option value="one">1st floor</option>
+                    <option value="two">2nd Floor</option>
+                    <option value="three">3rd Floor</option>
+                    <option value="four">4th Floor</option>
+                  </select>
+                  <select id="flatnumber" name="flatno" class = "input-control" style = "flex:3"required>
+                    <option value="0" selected disabled>Select Flat Number </option>
+                  </select>
+            </div> 
+            
+            
+            <div class = "form-group">
+              <label for="flatowner">Flat Owner:</label>
+                <input type="text" id="owner" name="owner" placeholder="Flat Owner" class = "input-control" 
+                onfocusout = "namecheck()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="contact">Phone Number:</label>
+                <input type="number" id="phone" name="phoneno" placeholder="Mobile Number" class = "input-control" 
+                onblur = "validatecontact()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="emailaddress">Email Address:</label>
+                <input type="email" id="emailaddr" name="email" placeholder="Email Address" class = "input-control"
+                onblur = "validateemail()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="familycount">Family Count:</label>
+                 <input type="number"  id="members" name="members" placeholder="Family Count" 
+                 class = "input-control" onblur = "membercheck()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="flatarea">Flatarea(sqft):</label>
+                <input type="number" id="farea" name="area" placeholder="Flat area(sqft)" class = "input-control"
+                onblur = "areacheck()" required>
+            </div>
+
+            <div class ="form-group">
+              <label>Vehicles:</label>
+                <input type="number" id="twowheel" name="2wheeler" placeholder="2 wheelers"
+                class = "input-control" style = "flex:4" onblur = "twowheelcheck()" required>
+        
+                <input type="number" id="fourwheel" name="4wheeler" placeholder="4 wheelers"
+                class = "input-control" style = "flex:5" onblur = "fourwheelcheck()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="dues">Remaining Dues (In Rupees.):</label>
+                <input type="number" id="r_dues" name="r_dues" placeholder="Remaining Due Amount" 
+                class = "input-control" onblur = "validatedues()" required>
+            </div>
+
+            <div class = "form-group">
+              <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" 
+                onkeypress="return ignoreSpaces(event)" class = "input-control" 
+                onblur = "usernamecheck()" required>
+            </div>
+
+               <!------------------IMPORTANT PART password validation---------------->
+            <div class = "form-group">
+              <label for="lname">Password</label>
+                <input type="password" id="psw" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeypress="return ignoreSpaces(event)" 
+                  placeholder="Password" class = "input-control" required>
+            </div>
+
+              <div id="message">
+              <h4>Password must contain the following:</h4>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+            
+            <div class = "form-group">
+              <label>&nbsp;</label>
+              <input type="submit" onmouseover = "flataddresscheck()" value="Submit" class = "button" name='Submit'> 
+              <input type = "reset" value = "Clear" class = "button" name = "Reset">
+            </div>
+
+          </form>
+        </div>
+        <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright © Easy Society</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="../logoutcontrol.php">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script> 
+
+
+<script>
+  var myInput = document.getElementById("psw");
+  var letter = document.getElementById("letter");
+  var capital = document.getElementById("capital");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+  
+  // When the user clicks on the password field, show the message box
+  myInput.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+  }
+  
+  // When the user clicks outside of the password field, hide the message box
+  myInput.onblur = function() {
+    document.getElementById("message").style.display = "none";
+  }
+  
+  // When the user starts to type something inside the password field
+  myInput.onkeyup = function() {
+    // Validate lowercase letters
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {  
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+    }
+    
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {  
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
+  
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {  
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
+    
+    // Validate length
+    if(myInput.value.length >= 8) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+  }
+
+function countryChange(selectObj) { 
+
+  var countryLists = new Array(4) 
+  countryLists["empty"] = ["Select a Flat"]; 
+  countryLists["one"] = ["101", "102", "103","104"]; 
+  countryLists["two"] = ["201", "202", "203","204"]; 
+  countryLists["three"] = ["301", "302", "303","304"]; 
+  countryLists["four"]= ["401", "402", "403","404"]; 
+ 
+ // get the index of the selected option 
+ var idx = selectObj.selectedIndex; 
+ // get the value of the selected option 
+ var which = selectObj.options[idx].value;  
+
+ cList = countryLists[which]; 
+ var cSelect = document.getElementById("flatnumber"); 
+ var len=cSelect.options.length; 
+
+ while (cSelect.options.length > 0) { 
+ cSelect.remove(0); 
+ } 
+
+ var newOption; 
+ for (var i=0; i<cList.length; i++) { 
+ newOption = document.createElement("option"); 
+ newOption.value = cList[i];  
+ newOption.text=cList[i]; 
+
+ try { 
+ cSelect.add(newOption);
+ } 
+ catch (e) { 
+ cSelect.appendChild(newOption); 
+ } 
+
+ } 
+ } 
+
+function flataddresscheck(){
+    var wing = document.getElementById("wing").value;
+    if(wing == "a")
+    {
+        tempAlert("Select a Valid Wing",2000);
+        document.newmember.wing.focus();
+        return;
+    }
+    var floor = document.getElementById("floor").value;
+    if(floor == "empty")
+    {
+        tempAlert("Select a Valid FLoor",2000);
+        document.newmember.floor.focus();
+        return;
+    }
+    var flatno = document.getElementById("flatnumber").value;
+    if(flatno == "0")
+    {
+        tempAlert("Select a Valid Flat Number",2000);
+        document.newmember.flatno.focus();
+        return;
+    }
+}
+
+function namecheck(){
+    var name;
+    name = document.getElementById("owner").value;
+    id = document.getElementById("owner");
+    var res = name.split(" ");
+    console.log("Entering");
+    if(res.length > 4)
+    {
+        tempAlert("The entered name contains too many words or just whitespaces",2000);
+        document.newmember.owner.focus();
+        return;
+    }
+    else
+    return res.forEach(myFunction);
+  }
+  
+  function myFunction(value, index, array) 
+  {
+    var letters = /[0-9`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if(value.match(letters)){
+        tempAlert("Use of invalid characters in a name",2000);
+        document.newmember.owner.focus();
+        return;
+    }
+    else if(value.length<3)
+    {
+        tempAlert("Words are too short or contains just whitespaces",2000);
+        document.newmember.owner.focus();
+        return;
+    }
+  }
+  
+  //Validating Contact Number
+  function validatecontact(){
+  
+    var mob = document.getElementById("phone").value;
+    var phoneno = /^\d{10}$/;
+    if((!mob.match(phoneno)) || mob[0] < 6)
+    {
+      tempAlert("Enter Valid 10 digit Indian mobile Number",2000);
+      document.newmember.phoneno.focus();
+      return;
+    }
+  }
+  
+  //Validating Email Address
+  function validateemail()
+  {
+    var email = document.getElementById("emailaddr").value;
+    if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)))
+    {
+      tempAlert("You have entered an invalid email address!",2000)
+      document.newmember.email.focus();
+      return;
+    }
+  }
+  // Validating No of housing members
+  function membercheck() {
+    var m;
+    m = document.getElementById("members").value;
+    if (isNaN(m) || m < 0 || m > 10) {
+     tempAlert("The Maximum Members per flat cannot exceed 10.",2000);
+     document.newmember.members.focus();
+     return;
+    }
+  }
+  
+  // Validating Flat Area
+  function areacheck(){
+    var x;
+    x = document.getElementById("farea").value;
+    if (isNaN(x) || x < 250 || x > 500) {
+     tempAlert("Square feet area allowed between 250 & 500",2000);
+     document.newmember.area.focus();
+     return;
+     }
+  }
+  
+  // Validating Two Wheelers
+  function twowheelcheck(){
+    var y;
+    y = document.getElementById("twowheel").value;
+    if (isNaN(y) || y < 0 || y > 2) {
+     tempAlert("Maximum two wheelers allowed per flat is 2.",2000);
+     document.getElementById("twowheel").focus();
+     return;
+    }
+  }
+  
+  // Validating Four Wheelers
+  function fourwheelcheck(){
+    var z;
+    z = document.getElementById("fourwheel").value;
+    if (isNaN(z) || z < 0  || z > 2) {
+     tempAlert("Maximum four wheelers allowed per flat is 2.",2000);
+     document.getElementById("fourwheel").focus();
+     return;
+    }
+
+  }
+  
+  // Validating Remaining Dues
+  function validatedues(){
+    var dues;
+    dues = document.getElementById("r_dues").value;
+    if(isNaN(dues) || dues > 10000)
+    {
+      tempAlert("Amount Entered is larger than 10K",2000);
+      document.newmember.r_dues.focus();
+      return;
+    }
+  }
+  
+  // Validating Username
+  function usernamecheck(){
+      var uname;
+      uname = document.getElementById("username").value;
+      
+      var letters = /^[A-Za-z0-9@_]+$/;
+      if(!uname.match(letters)){
+          tempAlert("Username contains invalid characters",2000);
+          document.newmember.username.focus();
+          return;
+      }
+      else if(uname.length < 5){
+      tempAlert("Length too short for a username",2000);
+      document.newmember.username.focus();
+      return;
+      }
+  }
+
+function tempAlert(msg,duration)
+{
+ var el = document.createElement("div");
+ var form = document.getElementById("content-wrapper");
+ el.setAttribute("style","position:absolute;top:25%;left:20%;background-color:black;color:white;padding:20px");
+ el.innerHTML = msg;
+ setTimeout(function(){
+  el.parentNode.removeChild(el);
+ },duration);
+ form.appendChild(el);
+}
+
+  </script>
+
+
+<script>
+  function ignoreSpaces(event) {
+      var character = event ? event.which : window.event.keyCode;
+      if (character == 32) return false;
+  }
+</script>
+</body>
+
+</html>
