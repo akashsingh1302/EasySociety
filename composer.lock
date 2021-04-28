@@ -6,7 +6,7 @@
     ],
     "content-hash": "580d83cbd6f5b531c8b60b6fe6f5e595",
     "packages": [
-        {,
+        {
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twilio/twilio-php/zipball/7494b78da4f5af5b761dd7b4fd9bbe52bd746f55",
