@@ -95,7 +95,6 @@ if(mysqli_num_rows($result) > 0)
     $total = $row["Total Payment"];
 ?>
 
-         <!-- DataTables Example -->
          <div class="card mb-3" style = "width:90%;margin-left:5%;">
             <div class="card-header" style="text-align:center;font-size:20px;font-weight:bold;padding:10px 15px">
               <i class="fas fa-table"></i>

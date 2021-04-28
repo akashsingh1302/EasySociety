@@ -60,8 +60,8 @@ A Web-App that digitalize and revolutionalize the traditional way of housing.</p
 <h1>Admin Login</h1><hr>
 <form method="post" action="adminloginauthenticate.php" style="margin-top: 40px">
 
-<input type="text" name="username" placeholder="Username.."required>
-<input type="password"name="password" placeholder="Password.."required>
+<input type="text" name="username" placeholder="Username.." value ="admin123" required>
+<input type="password"name="password" placeholder="Password.." value = "qwerty123" required>
 <input type="submit" value="Login"required>
 	</form>
 	<?php
